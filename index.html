@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard de Ventas Mensuales</title>
+    <link
+      rel="stylesheet"
+      href="./style.css"
+    />
+  </head>
+  <body>
+    <!-- TÍTULO -->
+    <header>
+      <h1>Dashboard de Ventas Mensuales</h1>
+    </header>
+
+    <!-- RESUMEN GENERAL -->
+    <section id="resumen">
+      <h2>Resumen General</h2>
+
+      <div class="resumen-item">
+        <p>Total de ingresos:</p>
+        <span id="total-ingresos">--</span>
+      </div>
+
+      <div class="resumen-item">
+        <p>Total de unidades vendidas:</p>
+        <span id="total-unidades">--</span>
+      </div>
+    </section>
+
+    <!-- FILTRO -->
+    <section id="filtros">
+      <h2>Filtros</h2>
+
+      <label for="filtro-mes">Filtrar por mes:</label>
+      <select id="filtro-mes">
+        <option value="">Todos</option>
+      </select>
+    </section>
+
+    <!-- TABLA DE DATOS -->
+    <section id="tabla-ventas">
+      <h2>Detalle de Ventas</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Mes</th>
+            <th>Categoría</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpo-tabla">
+          <!-- Aquí irán las filas con JavaScript -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- MENSAJES DE ESTADO -->
+    <section id="estado">
+      <p id="mensaje-estado"></p>
+    </section>
+
+    <script src="./main.js"></script>
+  </body>
+</html>

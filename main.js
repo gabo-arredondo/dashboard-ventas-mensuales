@@ -1,7 +1,9 @@
-// 1. Obtener referencia al cuerpo de la tabla
+// ===== REFERENCIAS AL DOM =====
 const cuerpoTabla = document.getElementById('cuerpo-tabla')
+const totalIngresosElement = document.getElementById('total-ingresos')
+const totalUnidadesElement = document.getElementById('total-unidades')
 
-// 2. Cargar los datos desde ventas.json
+// ===== CARGAR DATOS DESDE ventas.json =====
 fetch('./ventas.json')
   .then((response) => {
     if (!response.ok) {
@@ -10,7 +12,9 @@ fetch('./ventas.json')
     return response.json()
   })
   .then((ventas) => {
-    // 3. Recorrer las ventas y crear filas en la tabla
+    // ===== MOSTRAR TABLA =====
+    cuerpoTabla.innerHTML = ''
+
     ventas.forEach((venta) => {
       const fila = document.createElement('tr')
 
@@ -23,6 +27,19 @@ fetch('./ventas.json')
 
       cuerpoTabla.appendChild(fila)
     })
+
+    // ===== CALCULAR RESUMEN GENERAL =====
+    let totalIngresos = 0
+    let totalUnidades = 0
+
+    ventas.forEach((venta) => {
+      totalIngresos += venta.total
+      totalUnidades += venta.cantidad
+    })
+
+    // ===== MOSTRAR RESUMEN GENERAL =====
+    totalIngresosElement.textContent = totalIngresos
+    totalUnidadesElement.textContent = totalUnidades
   })
   .catch((error) => {
     console.error('Error:', error)

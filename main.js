@@ -6,6 +6,10 @@ const filtroMes = document.getElementById('filtro-mes')
 
 let ventasGlobal = []
 
+function formatearNumero(numero) {
+  return 'S/ ' + numero.toLocaleString()
+}
+
 // ===== RENDER TABLA =====
 function renderTabla(ventas) {
   cuerpoTabla.innerHTML = ''
@@ -17,7 +21,7 @@ function renderTabla(ventas) {
       <td>${venta.mes}</td>
       <td>${venta.categoria}</td>
       <td>${venta.cantidad}</td>
-      <td>${venta.total}</td>
+      <td>${formatearNumero(venta.total)}</td>
     `
 
     cuerpoTabla.appendChild(fila)
@@ -34,7 +38,7 @@ function calcularResumen(ventas) {
     totalUnidades += venta.cantidad
   })
 
-  totalIngresosElement.textContent = totalIngresos
+  totalIngresosElement.textContent = formatearNumero(totalIngresos)
   totalUnidadesElement.textContent = totalUnidades
 }
 
@@ -52,6 +56,8 @@ function llenarFiltroMeses(ventas) {
 }
 
 // ===== CREAR GRÁFICO =====
+let grafico // variable global
+
 function crearGrafico(ventas) {
   const totalesPorMes = {}
 
@@ -67,7 +73,12 @@ function crearGrafico(ventas) {
 
   const ctx = document.getElementById('graficoVentas').getContext('2d')
 
-  new Chart(ctx, {
+  // 🔥 destruir gráfico anterior si existe
+  if (grafico) {
+    grafico.destroy()
+  }
+
+  grafico = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: meses,
@@ -78,14 +89,6 @@ function crearGrafico(ventas) {
           backgroundColor: '#3498db',
         },
       ],
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          display: true,
-        },
-      },
     },
   })
 }
@@ -110,6 +113,7 @@ filtroMes.addEventListener('change', () => {
   if (mesSeleccionado === '') {
     renderTabla(ventasGlobal)
     calcularResumen(ventasGlobal)
+    crearGrafico(ventasGlobal)
     return
   }
 
@@ -117,4 +121,5 @@ filtroMes.addEventListener('change', () => {
 
   renderTabla(filtradas)
   calcularResumen(filtradas)
+  crearGrafico(filtradas)
 })

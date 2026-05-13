@@ -33,14 +33,13 @@ section {
 }
 
 #grafico {
-  max-width: 900px;
+  max-width: 800px;
   margin: 20px auto;
-  padding: 20px;
 }
 
 #graficoVentas {
   width: 100% !important;
-  height: 400px !important;
+  height: 350px !important;
 }
 
 /* RESUMEN */
@@ -79,9 +78,8 @@ select {
 
 /* TABLA */
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 thead {
@@ -95,12 +93,17 @@ td {
   text-align: center;
 }
 
-tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+tbody tr {
+  transition: 0.2s ease;
 }
 
 tbody tr:hover {
-  background-color: #dfe6e9;
+  background-color: #d0d7de;
+}
+
+h2 {
+  margin-bottom: 10px;
+  color: #34495e;
 }
 
 /* MENSAJES */

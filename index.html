@@ -3,18 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <title>Dashboard de Ventas Mensuales</title>
+
     <link
       rel="stylesheet"
       href="./style.css"
     />
   </head>
+
   <body>
-    <!-- TÍTULO -->
+    <!-- ===== TÍTULO ===== -->
     <header>
       <h1>Dashboard de Ventas Mensuales</h1>
     </header>
 
-    <!-- RESUMEN GENERAL -->
+    <!-- ===== RESUMEN GENERAL ===== -->
     <section id="resumen">
       <h2>Resumen General</h2>
 
@@ -29,7 +31,7 @@
       </div>
     </section>
 
-    <!-- FILTRO -->
+    <!-- ===== FILTRO ===== -->
     <section id="filtros">
       <h2>Filtros</h2>
 
@@ -39,11 +41,11 @@
       </select>
     </section>
 
-    <!-- TABLA DE DATOS -->
+    <!-- ===== TABLA ===== -->
     <section id="tabla-ventas">
       <h2>Detalle de Ventas</h2>
 
-      <table>
+      <table border="1">
         <thead>
           <tr>
             <th>Mes</th>
@@ -53,16 +55,18 @@
           </tr>
         </thead>
         <tbody id="cuerpo-tabla">
-          <!-- Aquí irán las filas con JavaScript -->
+          <!-- JS llena esto -->
         </tbody>
       </table>
     </section>
 
-    <!-- MENSAJES DE ESTADO -->
+    <!-- ===== MENSAJES ===== -->
     <section id="estado">
       <p id="mensaje-estado"></p>
     </section>
 
+    <!-- ===== SCRIPT ===== -->
     <script src="./main.js"></script>
   </body>
 </html>
+``

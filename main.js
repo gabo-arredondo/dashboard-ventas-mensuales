@@ -1,4 +1,4 @@
-// ===== REFERENCIAS =====
+// ===== REFERENCIAS AL DOM =====
 const cuerpoTabla = document.getElementById('cuerpo-tabla')
 const totalIngresosElement = document.getElementById('total-ingresos')
 const totalUnidadesElement = document.getElementById('total-unidades')
@@ -24,7 +24,7 @@ function renderTabla(ventas) {
   })
 }
 
-// ===== RESUMEN =====
+// ===== CALCULAR RESUMEN =====
 function calcularResumen(ventas) {
   let totalIngresos = 0
   let totalUnidades = 0
@@ -38,7 +38,7 @@ function calcularResumen(ventas) {
   totalUnidadesElement.textContent = totalUnidades
 }
 
-// ===== GENERAR MESES DINÁMICOS =====
+// ===== GENERAR FILTRO DINÁMICO =====
 function llenarFiltroMeses(ventas) {
   const mesesUnicos = [...new Set(ventas.map((v) => v.mes))]
 
@@ -46,11 +46,51 @@ function llenarFiltroMeses(ventas) {
     const option = document.createElement('option')
     option.value = mes
     option.textContent = mes
+
     filtroMes.appendChild(option)
   })
 }
 
-// ===== FETCH =====
+// ===== CREAR GRÁFICO =====
+function crearGrafico(ventas) {
+  const totalesPorMes = {}
+
+  ventas.forEach((venta) => {
+    if (!totalesPorMes[venta.mes]) {
+      totalesPorMes[venta.mes] = 0
+    }
+    totalesPorMes[venta.mes] += venta.total
+  })
+
+  const meses = Object.keys(totalesPorMes)
+  const totales = Object.values(totalesPorMes)
+
+  const ctx = document.getElementById('graficoVentas').getContext('2d')
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: meses,
+      datasets: [
+        {
+          label: 'Ventas mensuales',
+          data: totales,
+          backgroundColor: '#3498db',
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+        },
+      },
+    },
+  })
+}
+
+// ===== CARGAR DATOS =====
 fetch('./ventas.json')
   .then((res) => res.json())
   .then((ventas) => {
@@ -59,7 +99,9 @@ fetch('./ventas.json')
     renderTabla(ventasGlobal)
     calcularResumen(ventasGlobal)
     llenarFiltroMeses(ventasGlobal)
+    crearGrafico(ventasGlobal)
   })
+  .catch((error) => console.error('Error:', error))
 
 // ===== FILTRO =====
 filtroMes.addEventListener('change', () => {
@@ -76,4 +118,3 @@ filtroMes.addEventListener('change', () => {
   renderTabla(filtradas)
   calcularResumen(filtradas)
 })
-;``

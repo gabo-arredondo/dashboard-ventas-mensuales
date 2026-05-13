@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>Dashboard de Ventas Mensuales</title>
 
+    <!-- CSS -->
     <link
       rel="stylesheet"
       href="./style.css"
@@ -41,11 +42,17 @@
       </select>
     </section>
 
+    <!-- ===== GRAFICO ===== -->
+    <section id="grafico">
+      <h2>Ventas por mes</h2>
+      <canvas id="graficoVentas"></canvas>
+    </section>
+
     <!-- ===== TABLA ===== -->
     <section id="tabla-ventas">
       <h2>Detalle de Ventas</h2>
 
-      <table border="1">
+      <table>
         <thead>
           <tr>
             <th>Mes</th>
@@ -54,8 +61,9 @@
             <th>Total</th>
           </tr>
         </thead>
+
         <tbody id="cuerpo-tabla">
-          <!-- JS llena esto -->
+          <!-- JS inserta filas aquí -->
         </tbody>
       </table>
     </section>
@@ -65,8 +73,10 @@
       <p id="mensaje-estado"></p>
     </section>
 
-    <!-- ===== SCRIPT ===== -->
+    <!-- ===== LIBRERÍA CHART.JS ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- ===== SCRIPT PRINCIPAL ===== -->
     <script src="./main.js"></script>
   </body>
 </html>
-``

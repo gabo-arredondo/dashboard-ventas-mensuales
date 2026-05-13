@@ -58,7 +58,7 @@ fetch('./ventas.json')
 
     renderTabla(ventasGlobal)
     calcularResumen(ventasGlobal)
-    llenarFiltroMeses(ventasGlobal) // 👈 NUEVO 🔥
+    llenarFiltroMeses(ventasGlobal)
   })
 
 // ===== FILTRO =====
